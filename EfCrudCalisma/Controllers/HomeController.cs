@@ -20,7 +20,11 @@ namespace EfCrudCalisma.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            // anasayfada rastgele bir kelime ve anlamini gosterelim
+            int adet = _context.Girdiler.Count();
+            int skip = new Random().Next(adet); // 0 - 3
+            var sozcuk = _context.Girdiler.Skip(skip).First();
+            return View(sozcuk);
         }
 
         public IActionResult Privacy()
