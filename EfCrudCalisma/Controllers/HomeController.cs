@@ -1,4 +1,5 @@
-﻿using EfCrudCalisma.Models;
+﻿using EfCrudCalisma.Data;
+using EfCrudCalisma.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,10 +8,14 @@ namespace EfCrudCalisma.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly SozlukContext _context; // artik bu sekilde yapilacak
 
-        public HomeController(ILogger<HomeController> logger)
+        //SozlukContext _db = new SozlukContext(); bu artik burada yazilmayacak
+
+        public HomeController(ILogger<HomeController> logger, SozlukContext context) // buna dependency injection deniyor
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()

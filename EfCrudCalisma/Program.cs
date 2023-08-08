@@ -1,6 +1,11 @@
+using EfCrudCalisma.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var cs = builder.Configuration.GetConnectionString("BaglantiCumlem");
+builder.Services.AddDbContext<SozlukContext>(ob => ob.UseSqlServer(cs));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
