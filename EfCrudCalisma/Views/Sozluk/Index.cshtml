@@ -1,41 +1,33 @@
-﻿@model IEnumerable<EfCrudCalisma.Data.Girdi>
-
+﻿@model List<Girdi>
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "Sozluk";
 }
+<h1>Sozluk</h1>
+<a asp-action="Yeni">Yeni Girdi</a>
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Sozcuk)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Anlam)
-            </th>
+            <th>Id</th>
+            <th>Sozcuk</th>
+            <th>Anlam</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sozcuk)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Anlam)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach(var girdi in Model)
+        {
+            <tr>
+                <td>@girdi.Id</td>
+                <td>@girdi.Sozcuk</td>
+                <td>@girdi.Anlam</td>
+                <td>
+                    <a asp-action="Sil" asp-route-id="@girdi.Id" class="btn btn-danger">Sil</a>
+                    <a asp-action="Duzenle" asp-route-id="@girdi.Id" class="btn btn-warning">Duzenle</a>
+                </td>
+
+            </tr>
+        }
     </tbody>
 </table>
